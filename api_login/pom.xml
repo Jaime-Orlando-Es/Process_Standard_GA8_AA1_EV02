@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Archivo principal de configuración de Maven para el proyecto -->
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <!-- Hereda configuración general del proyecto Spring Boot -->
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>3.5.3</version> <!-- Versión actual de Spring Boot -->
+        <relativePath/> <!-- Busca el padre en el repositorio central -->
+    </parent>
+
+    <!-- Información básica del proyecto -->
+    <groupId>com.processstandard.login</groupId> <!-- Grupo base del microservicio -->
+    <artifactId>api_login</artifactId> <!-- Nombre del artefacto compilado -->
+    <version>0.0.1-SNAPSHOT</version> <!-- Versión actual del proyecto -->
+    <name>api_login</name> <!-- Nombre descriptivo -->
+    <description>Microservicio para el inicio de sesión</description> <!-- Descripción en español -->
+
+    <!-- Versión de Java utilizada -->
+    <properties>
+        <java.version>17</java.version>
+    </properties>
+
+    <!-- Dependencias necesarias para el microservicio -->
+    <dependencies>
+
+        <!-- Spring Web: permite crear controladores REST y manejar solicitudes HTTP -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+        <!-- Spring Security: necesario para el uso de encriptación de contraseñas -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>
+
+        <!-- Spring Data JPA: permite interactuar con la base de datos usando repositorios -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+        </dependency>
+
+        <!-- Conector MySQL: permite conectarse a bases de datos MySQL -->
+        <dependency>
+            <groupId>com.mysql</groupId>
+            <artifactId>mysql-connector-j</artifactId>
+            <version>9.3.0</version>
+            <scope>runtime</scope>
+        </dependency>
+
+        <!-- Spring Boot DevTools: mejora la experiencia en desarrollo (reinicio automático, etc.) -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <scope>runtime</scope>
+            <optional>true</optional>
+        </dependency>
+
+        <!-- Dependencia para pruebas unitarias y de integración -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+    </dependencies>
+
+    <!-- Configuración para compilar y ejecutar el proyecto -->
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <!-- Este plugin permite empaquetar y correr el proyecto como un jar ejecutable -->
+            </plugin>
+        </plugins>
+    </build>
+
+</project>

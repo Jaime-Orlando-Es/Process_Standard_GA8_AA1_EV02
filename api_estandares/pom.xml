@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Archivo de configuración de Maven para el microservicio api_estandares -->
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <!-- Versión del modelo de proyecto Maven -->
+    <modelVersion>4.0.0</modelVersion>
+
+    <!-- Herencia del padre de Spring Boot para gestionar dependencias y configuraciones base -->
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>3.5.3</version>
+        <relativePath/> <!-- Busca el padre desde el repositorio local o remoto -->
+    </parent>
+
+    <!-- Identificación básica del proyecto -->
+    <groupId>com.processstandard</groupId>
+    <artifactId>api_estandares</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <name>api_estandares</name>
+    <description>Microservicio para gestionar estandares por maquina y referencia</description>
+
+    <!-- Propiedades utilizadas por el proyecto -->
+    <properties>
+        <java.version>17</java.version> <!-- Versión mínima de Java requerida -->
+    </properties>
+
+    <!-- Dependencias necesarias para que el microservicio funcione correctamente -->
+    <dependencies>
+
+        <!-- Spring Data JPA para acceso a bases de datos relacionales -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+        </dependency>
+
+        <!-- Spring Web para crear controladores REST y exponer endpoints -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+        <!-- Conector de MySQL para establecer conexión con la base de datos -->
+        <dependency>
+            <groupId>com.mysql</groupId>
+            <artifactId>mysql-connector-j</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+
+        <!-- Lombok para generar automáticamente getters, setters, constructores, etc. -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <optional>true</optional>
+        </dependency>
+
+        <!-- Herramientas para realizar pruebas unitarias y de integración con Spring Boot -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+    </dependencies>
+
+    <!-- Configuración de compilación del proyecto -->
+    <build>
+        <plugins>
+
+            <!-- Plugin del compilador para soportar anotaciones como las de Lombok -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <annotationProcessorPaths>
+                        <path>
+                            <groupId>org.projectlombok</groupId>
+                            <artifactId>lombok</artifactId>
+                        </path>
+                    </annotationProcessorPaths>
+                </configuration>
+            </plugin>
+
+            <!-- Plugin para empaquetar y ejecutar aplicaciones Spring Boot -->
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <excludes>
+                        <!-- Excluir Lombok del empaquetado final (no es necesario en producción) -->
+                        <exclude>
+                            <groupId>org.projectlombok</groupId>
+                            <artifactId>lombok</artifactId>
+                        </exclude>
+                    </excludes>
+                </configuration>
+            </plugin>
+
+        </plugins>
+    </build>
+
+</project>

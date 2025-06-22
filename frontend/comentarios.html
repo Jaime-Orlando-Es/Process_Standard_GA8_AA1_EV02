@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Comentarios - Process Standard</title>
+</head>
+<body>
+  <h1>Enviar comentario</h1>
+
+  <!-- Formulario para enviar comentario -->
+  <form id="comentarioForm">
+    <label>Nombre:</label><br />
+    <input type="text" id="nombre" required /><br /><br />
+
+    <label>Comentario:</label><br />
+    <textarea id="comentario" required></textarea><br /><br />
+
+    <button type="submit">Enviar</button>
+  </form>
+
+  <h2>Comentarios enviados</h2>
+  <ul id="listaComentarios"></ul>
+
+  <script>
+    const API_URL = 'http://localhost:8084/comentarios'; // Puerto del microservicio
+
+    // Manejar el envío del formulario
+    document.getElementById('comentarioForm').addEventListener('submit', async function(e) {
+      e.preventDefault();
+
+      const nombre = document.getElementById('nombre').value;
+      const comentario = document.getElementById('comentario').value;
+
+      const fecha = new Date().toISOString().split('T')[0]; // Formato yyyy-mm-dd
+
+      const data = { nombre, comentario, fecha };
+
+      try {
+        const response = await fetch(API_URL, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(data)
+        });
+
+        if (response.ok) {
+          alert('Comentario enviado correctamente');
+          cargarComentarios();
+        } else {
+          alert('Error al enviar comentario');
+        }
+      } catch (error) {
+        console.error('Error:', error);
+        alert('No se pudo conectar con el servidor');
+      }
+    });
+
+    // Función para cargar los comentarios existentes
+    async function cargarComentarios() {
+      try {
+        const response = await fetch(API_URL);
+        const comentarios = await response.json();
+
+        const lista = document.getElementById('listaComentarios');
+        lista.innerHTML = '';
+
+        comentarios.forEach(c => {
+          const li = document.createElement('li');
+          li.textContent = `${c.fecha} - ${c.nombre}: ${c.comentario}`;
+          lista.appendChild(li);
+        });
+      } catch (error) {
+        console.error('Error al cargar comentarios:', error);
+      }
+    }
+
+    // Cargar comentarios al inicio
+    cargarComentarios();
+  </script>
+</body>
+</html>

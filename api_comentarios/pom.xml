@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Archivo de configuración de Maven para el módulo api_comentarios -->
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <!-- Herencia de la configuración base de Spring Boot -->
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>3.5.3</version>
+        <relativePath/> <!-- Busca el padre desde el repositorio -->
+    </parent>
+
+    <!-- Identificación del proyecto -->
+    <groupId>com.processstandard</groupId>
+    <artifactId>api_comentarios</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <name>api_comentarios</name>
+    <description>Módulo para la gestión de comentarios del sistema Process Standard</description>
+
+    <!-- Propiedades utilizadas por Maven -->
+    <properties>
+        <java.version>17</java.version> <!-- Versión de Java usada -->
+    </properties>
+
+    <!-- Dependencias necesarias para que el proyecto funcione -->
+    <dependencies>
+
+        <!-- Dependencia para usar Spring Data JPA (persistencia con base de datos) -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+        </dependency>
+
+        <!-- Dependencia para crear servicios web REST con Spring Boot -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+        <!-- Conector de MySQL para acceder a la base de datos -->
+        <dependency>
+            <groupId>com.mysql</groupId>
+            <artifactId>mysql-connector-j</artifactId>
+            <version>9.3.0</version>
+            <scope>runtime</scope>
+        </dependency>
+
+        <!-- Lombok para reducir la escritura de código repetitivo como getters y setters -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <optional>true</optional>
+        </dependency>
+
+        <!-- Dependencias para realizar pruebas con Spring Boot -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <!-- Configuración para la construcción del proyecto -->
+    <build>
+        <plugins>
+
+            <!-- Plugin del compilador de Maven con soporte para anotaciones (como las de Lombok) -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <annotationProcessorPaths>
+                        <path>
+                            <groupId>org.projectlombok</groupId>
+                            <artifactId>lombok</artifactId>
+                        </path>
+                    </annotationProcessorPaths>
+                </configuration>
+            </plugin>
+
+            <!-- Plugin para empaquetar el proyecto como aplicación Spring Boot ejecutable -->
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <excludes>
+                        <exclude>
+                            <groupId>org.projectlombok</groupId>
+                            <artifactId>lombok</artifactId>
+                        </exclude>
+                    </excludes>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>

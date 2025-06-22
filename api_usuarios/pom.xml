@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <!-- Versión del modelo de Maven -->
+    <modelVersion>4.0.0</modelVersion>
+
+    <!-- Dependencia del proyecto padre de Spring Boot (proporciona configuraciones base) -->
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>3.5.3</version>
+        <relativePath/> <!-- Búsqueda del padre desde el repositorio local -->
+    </parent>
+
+    <!-- Información básica del microservicio -->
+    <groupId>com.processstandard</groupId>
+    <artifactId>api_usuarios</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <name>api_usuarios</name>
+    <description>Microservicio para la gestión de usuarios en el sistema Process Standard</description>
+
+    <!-- Secciones opcionales para documentación -->
+    <url/>
+    <licenses>
+        <license/>
+    </licenses>
+    <developers>
+        <developer/>
+    </developers>
+    <scm>
+        <connection/>
+        <developerConnection/>
+        <tag/>
+        <url/>
+    </scm>
+
+    <!-- Especificación de versión de Java -->
+    <properties>
+        <java.version>17</java.version>
+    </properties>
+
+    <!-- Dependencias necesarias para el funcionamiento del microservicio -->
+    <dependencies>
+
+        <!-- Soporte para JPA (persistencia de datos con Hibernate) -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+        </dependency>
+
+        <!-- Soporte para desarrollo de APIs REST -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+        <!-- Conector de MySQL para la base de datos -->
+        <dependency>
+            <groupId>com.mysql</groupId>
+            <artifactId>mysql-connector-j</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+
+        <!-- Soporte para seguridad (encriptación de contraseñas, validaciones, etc.) -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>
+
+        <!-- Lombok para reducir código repetitivo como getters/setters -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <optional>true</optional>
+        </dependency>
+
+        <!-- Dependencias para pruebas unitarias -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <!-- Configuración del proceso de compilación -->
+    <build>
+        <plugins>
+            <!-- Plugin de compilación de Maven con soporte para anotaciones de Lombok -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <annotationProcessorPaths>
+                        <path>
+                            <groupId>org.projectlombok</groupId>
+                            <artifactId>lombok</artifactId>
+                        </path>
+                    </annotationProcessorPaths>
+                </configuration>
+            </plugin>
+
+            <!-- Plugin para empaquetar y ejecutar la aplicación Spring Boot -->
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <excludes>
+                        <!-- Lombok se excluye al momento de empaquetar ya que solo es necesario en desarrollo -->
+                        <exclude>
+                            <groupId>org.projectlombok</groupId>
+                            <artifactId>lombok</artifactId>
+                        </exclude>
+                    </excludes>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>
