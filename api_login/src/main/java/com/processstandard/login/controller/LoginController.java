@@ -11,7 +11,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @RestController // Indica que esta clase es un controlador REST
-@RequestMapping("/login") // Define la ruta base del endpoint como /login
+@RequestMapping("/api_login") // Define la ruta base del endpoint como /login
 public class LoginController {
 
     @Autowired // Inyecta el servicio que se encargará de la lógica de autenticación

@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/estandares") // Ruta base para acceder a este microservicio
+@RequestMapping("/api_estandares") // Ruta base para acceder a este microservicio
 @CrossOrigin(origins = "*") // Permite solicitudes desde cualquier origen (ideal para pruebas)
 public class StandardController {
 

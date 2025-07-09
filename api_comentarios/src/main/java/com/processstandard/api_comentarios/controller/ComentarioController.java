@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController // Indica que esta clase es un controlador REST
-@RequestMapping("/api/comentarios") // Ruta base para todos los endpoints de este controlador
+@RequestMapping("/api_comentarios") // Ruta base para todos los endpoints de este controlador
 @CrossOrigin(origins = "*") // Permite llamadas desde cualquier origen (útil para pruebas con frontend durante ekl desarrollo)
 public class ComentarioController {
 

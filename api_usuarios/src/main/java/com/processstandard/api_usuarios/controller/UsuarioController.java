@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController // Esta anotación indica que esta clase es un controlador REST
-@RequestMapping("/api/usuarios") // Ruta base para acceder a los endpoints de este controlador
+@RequestMapping("/api_usuarios") // Ruta base para acceder a los endpoints de este controlador
 @CrossOrigin(origins = "*") // Permite peticiones desde cualquier origen (útil para el frontend)
 public class UsuarioController {
     
